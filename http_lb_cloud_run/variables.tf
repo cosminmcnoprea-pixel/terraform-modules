@@ -13,8 +13,14 @@ variable "cloud_run_service_name" {
   description = "Cloud Run service name to target"
 }
 
+variable "name" {
+  type        = string
+  description = "Base name prefix for LB resources"
+  default     = "php-app"
+}
+
 variable "domain" {
   type        = string
-  description = "Domain for managed cert
+  description = "Domain for managed cert"
   default     = ""
 }

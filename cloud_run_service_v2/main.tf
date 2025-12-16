@@ -9,34 +9,17 @@ resource "google_cloud_run_v2_service" "php_app" {
 
       resources {
         limits = {
-          cpu    = "1"
-          memory = "512Mi"
+          cpu    = var.cpu
+          memory = var.memory
         }
       }
 
-      env {
-        name  = "APP_ENV"
-        value = var.environment
-      }
-
-      env {
-        name  = "DB_HOST"
-        value = var.db_host
-      }
-
-      env {
-        name  = "DB_NAME"
-        value = var.db_name
-      }
-
-      env {
-        name  = "DB_USER"
-        value = var.db_user
-      }
-
-      env {
-        name  = "STATIC_BUCKET_URL"
-        value = var.static_bucket_url
+      dynamic "env" {
+        for_each = var.env_vars
+        content {
+          name  = env.key
+          value = env.value
+        }
       }
     }
 
@@ -52,9 +35,9 @@ resource "google_cloud_run_v2_service" "php_app" {
   }
 
   lifecycle {
-    ignore_changes = var.ignore_image_changes ? [
+    ignore_changes = [
       template[0].containers[0].image,
-    ] : []
+    ]
   }
 }
 

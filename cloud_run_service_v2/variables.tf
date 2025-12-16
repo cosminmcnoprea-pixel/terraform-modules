@@ -18,33 +18,22 @@ variable "image" {
   description = "Container image reference"
 }
 
-variable "environment" {
-  type        = string
-  description = "APP_ENV value"
+variable "env_vars" {
+  type        = map(string)
+  description = "Environment variables for the container"
+  default     = {}
 }
 
-variable "db_host" {
+variable "cpu" {
   type        = string
-  description = "DB_HOST value"
-  default     = ""
+  description = "CPU limit"
+  default     = "1"
 }
 
-variable "db_name" {
+variable "memory" {
   type        = string
-  description = "DB_NAME value"
-  default     = ""
-}
-
-variable "db_user" {
-  type        = string
-  description = "DB_USER value"
-  default     = ""
-}
-
-variable "static_bucket_url" {
-  type        = string
-  description = "STATIC_BUCKET_URL value"
-  default     = ""
+  description = "Memory limit"
+  default     = "512Mi"
 }
 
 variable "min_instance_count" {
@@ -63,10 +52,4 @@ variable "allow_unauthenticated" {
   type        = bool
   default     = true
   description = "Allow public access"
-}
-
-variable "ignore_image_changes" {
-  type        = bool
-  default     = true
-  description = "Ignore image changes"
 }

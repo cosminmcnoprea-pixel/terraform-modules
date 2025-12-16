@@ -6,7 +6,6 @@ resource "google_artifact_registry_repository" "docker_repo" {
   description   = "Docker repository for Cloud Run services"
 }
 
-# Optional: allow prod to read images from dev (useful for promote/tag workflows).
 resource "google_artifact_registry_repository_iam_member" "prod_reader" {
   count = var.environment == "dev" ? 1 : 0
 
@@ -16,5 +15,3 @@ resource "google_artifact_registry_repository_iam_member" "prod_reader" {
   role       = "roles/artifactregistry.reader"
   member     = "serviceAccount:${var.prod_reader_service_account}"
 }
-
-
