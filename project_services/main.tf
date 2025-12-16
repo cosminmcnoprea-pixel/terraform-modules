@@ -4,6 +4,7 @@ locals {
     "sqladmin.googleapis.com",
     "iamcredentials.googleapis.com",
     "serviceusage.googleapis.com",
+    "cloudbuild.googleapis.com",
     "storage.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "servicenetworking.googleapis.com",
