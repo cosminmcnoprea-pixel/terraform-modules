@@ -1,6 +1,6 @@
 resource "google_storage_bucket" "static_bucket" {
   project       = var.project_id
-  name          = "${var.bucket_base_name}-${var.environment}"
+  name          = "${var.static_bucket_name}-${var.environment}"
   location      = var.region
   force_destroy = true
 

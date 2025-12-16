@@ -8,7 +8,7 @@ variable "region" {
   description = "Bucket location/region"
 }
 
-variable "bucket_base_name" {
+variable "static_bucket_name" {
   type        = string
   description = "Base bucket name"
 }
