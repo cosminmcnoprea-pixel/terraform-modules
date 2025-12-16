@@ -39,6 +39,7 @@ resource "google_cloud_run_v2_service" "php_app" {
       template[0].containers[0].image,
     ]
   }
+  deletion_protection = false
 }
 
 resource "google_cloud_run_v2_service_iam_member" "public_access" {
