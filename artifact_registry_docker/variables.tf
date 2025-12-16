@@ -14,13 +14,8 @@ variable "repository_id" {
   default     = "docker-repo"
 }
 
-variable "environment" {
+variable "reader_member" {
   type        = string
-  description = "Environment"
-}
-
-variable "prod_reader_service_account" {
-  type        = string
-  description = "Prod service account email that should be able to read from dev repo"
-  default     = "service-account-iac@global-reach-media-prod.iam.gserviceaccount.com"
+  description = "IAM member to grant artifactregistry.reader"
+  default     = ""
 }

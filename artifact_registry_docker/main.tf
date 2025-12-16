@@ -6,12 +6,12 @@ resource "google_artifact_registry_repository" "docker_repo" {
   description   = "Docker repository for Cloud Run services"
 }
 
-resource "google_artifact_registry_repository_iam_member" "prod_reader" {
-  count = var.environment == "dev" ? 1 : 0
+resource "google_artifact_registry_repository_iam_member" "reader" {
+  count = var.reader_member != "" ? 1 : 0
 
   project    = var.project_id
   location   = var.region
   repository = google_artifact_registry_repository.docker_repo.name
   role       = "roles/artifactregistry.reader"
-  member     = "serviceAccount:${var.prod_reader_service_account}"
+  member     = var.reader_member
 }
